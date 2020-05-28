@@ -9,7 +9,7 @@ window.addEventListener("load", function() {
 
      if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === ""){
        alert("All fields are required!");
-       event.preventDefault();
+       event.defaultPrevented();
      };
      let fuelLevelFigure = Number(fuelLevelInput.value);
      let cargoMassFigure = Number(cargoMassInput.value);
@@ -17,10 +17,11 @@ window.addEventListener("load", function() {
      let copilotNameFigure = Number(copilotNameInput.value);
      if (isNaN(fuelLevelFigure) === true || isNaN(cargoMassFigure) === true){
         alert("Fuel level and cargo mass should be numbers.");
-        event.preventDefault();
+        event.defaultPrevented();
      };
      if (isNaN(pilotNameFigure) === false || isNaN(copilotNameFigure) === false){
         alert("Pilot and Co-pilot names should not be numbers.")
+        event.defaultPrevented();
      };
      let launchStatusUpdate = document.getElementById("launchStatus");
      let statusUpdate = document.getElementById("faultyItems");
@@ -29,8 +30,8 @@ window.addEventListener("load", function() {
      let fuelLevelStatus = document.getElementById("fuelStatus");
      let cargoMassStatus = document.getElementById("cargoStatus");
 
-     pilotUpdate.innerHTML = `Pilot ${pilotNameInput.value} is ready for launch`;
-     copilotUpdate.innerHTML =`Co-pilot ${copilotNameInput.value} is ready for launch`;
+     pilotUpdate.innerHTML = `Pilot ${pilotNameInput.value} is ready for launch.`;
+     copilotUpdate.innerHTML =`Co-pilot ${copilotNameInput.value} is ready for launch.`;
 
      if (fuelLevelFigure < 10000){
          fuelLevelStatus.innerHTML = `Fuel level too low for launch.`
@@ -46,12 +47,12 @@ window.addEventListener("load", function() {
 
      if (fuelLevelFigure < 10000 || cargoMassFigure > 10000){
          statusUpdate.style = "visibility: visible";
-         launchStatusUpdate.innerHTML = `
-         <h2 id="launchStatus" style="color:red">Shuttle not ready for launch</h2>`
+         launchStatusUpdate.style = "color:red";
+         launchStatusUpdate.innerHTML = `Shuttle not ready for launch`
      } else {
          statusUpdate.style = "visibility: hidden";
-         launchStatusUpdate.innerHTML = `
-         <h2 id="launchStatus" style="color:green">Shuttle is ready for launch</h2>`
+         launchStatusUpdate.style = "color:green";
+         launchStatusUpdate.innerHTML = `Shuttle is ready for launch`
      }
 
    });
