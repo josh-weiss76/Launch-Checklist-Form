@@ -15,12 +15,12 @@ window.addEventListener("load", function() {
      let cargoMassFigure = Number(cargoMassInput.value);
      let pilotNameFigure = Number(pilotNameInput.value);
      let copilotNameFigure = Number(copilotNameInput.value);
+     if (isNaN(pilotNameFigure) === false || isNaN(copilotNameFigure) === false){
+      alert("Pilot and Co-pilot names should not be numbers.")
+      event.defaultPrevented();
+     };
      if (isNaN(fuelLevelFigure) === true || isNaN(cargoMassFigure) === true){
         alert("Fuel level and cargo mass should be numbers.");
-        event.defaultPrevented();
-     };
-     if (isNaN(pilotNameFigure) === false || isNaN(copilotNameFigure) === false){
-        alert("Pilot and Co-pilot names should not be numbers.")
         event.defaultPrevented();
      };
      let launchStatusUpdate = document.getElementById("launchStatus");
@@ -48,11 +48,11 @@ window.addEventListener("load", function() {
      if (fuelLevelFigure < 10000 || cargoMassFigure > 10000){
          statusUpdate.style = "visibility: visible";
          launchStatusUpdate.style = "color:red";
-         launchStatusUpdate.innerHTML = `Shuttle not ready for launch`
+         launchStatusUpdate.innerHTML = `Shuttle not ready for launch`;
      } else {
          statusUpdate.style = "visibility: hidden";
          launchStatusUpdate.style = "color:green";
-         launchStatusUpdate.innerHTML = `Shuttle is ready for launch`
+         launchStatusUpdate.innerHTML = `Shuttle is ready for launch`;
      }
 
    });
